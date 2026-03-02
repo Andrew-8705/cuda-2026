@@ -456,7 +456,7 @@ std::vector<float> GeluOCL(const std::vector<float>& input, int platform) {
 |3823B1FI3|papulina_yuliya|0.2558|10|
 |3823B1FI3|lukin_ivan|0.2660|2|
 |3823B1FI3|votincev_dmitri|0.2775|1|
-|3823B1FI3|zavyalov_alexey|0.3674|9|
+|3823B1FI3|zavyalov_alexey|0.3588|9|
 |**REF**|**REF**|**0.7275**|**-**|
 |3823B1FI3|chacshin_vladimir|RUN FAILED|6|
 |3823B1FI3|kurpiakov_alexei|TEST FAILED|-|
@@ -493,9 +493,9 @@ std::vector<float> GeluOCL(const std::vector<float>& input, int platform) {
 |3823B1FI3|chacshin_vladimir|0.0262|2|
 |3823B1FI3|romanov_artem|0.0264|1|
 |3823B1FI3|lukin_ivan|0.0284|4|
+|3823B1FI3|zavyalov_alexey|0.0294|5|
 |3823B1FI3|baldin_andrew|0.0353|3|
 |**REF**|**REF**|**0.1666**|**-**|
-|3823B1FI3|zavyalov_alexey|TEST FAILED|-|
 
 ## 6_block_gemm_cuda (4096 elements)
 |Group|Name|Result|Rank|
@@ -525,7 +525,7 @@ std::vector<float> GeluOCL(const std::vector<float>& input, int platform) {
 ## 3823B1FI3
 |Group|Name|Passed|Score|
 |-----|----|------|-----|
-|3823B1FI3|baldin_andrew|3/9|180|
+|3823B1FI3|baldin_andrew|3/9|179|
 |3823B1FI3|chacshin_vladimir|3/9|151|
 |3823B1FI3|gutyansky_alexey|2/9|112|
 |3823B1FI3|kurpiakov_alexei|0/9|0|
@@ -535,7 +535,7 @@ std::vector<float> GeluOCL(const std::vector<float>& input, int platform) {
 |3823B1FI3|papulina_yuliya|1/9|50|
 |3823B1FI3|romanov_artem|3/9|182|
 |3823B1FI3|votincev_dmitri|2/9|114|
-|3823B1FI3|zavyalov_alexey|2/9|105|
+|3823B1FI3|zavyalov_alexey|3/9|162|
 
 Passed: 0
 
