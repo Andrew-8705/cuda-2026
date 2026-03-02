@@ -11,22 +11,10 @@ std::vector<float> NaiveGemmOMP(const std::vector<float>& a,
         for (int k = 0; k < n; ++k) {
             int i_mult_n = i * n;
             int k_mult_n = k * n;
-// #pragma omp simd
             float a_element = a[i_mult_n + k];
-            for (int j = 0; j < n - 7; j += 8) {
-                c[i_mult_n + j] += a_element * b[k_mult_n + j];
-                c[i_mult_n + (j + 1)] += a_element * b[k_mult_n + (j + 1)];
-                c[i_mult_n + (j + 2)] += a_element * b[k_mult_n + (j + 2)];
-                c[i_mult_n + (j + 3)] += a_element * b[k_mult_n + (j + 3)];
-                c[i_mult_n + (j + 4)] += a_element * b[k_mult_n + (j + 4)];
-                c[i_mult_n + (j + 5)] += a_element * b[k_mult_n + (j + 5)];
-                c[i_mult_n + (j + 6)] += a_element * b[k_mult_n + (j + 6)];
-                c[i_mult_n + (j + 7)] += a_element * b[k_mult_n + (j + 7)];
-            }
-            
-            // хвосты
-            int ostalos = n % 8;
-            for (int j = n - ostalos; j < n; ++j) {
+
+#pragma omp simd
+            for (int j = 0; j < n; j ++) {
                 c[i_mult_n + j] += a_element * b[k_mult_n + j];
             }
         }
