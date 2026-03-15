@@ -6,10 +6,8 @@ __global__ void naive_gemm_kernel(const float* __restrict__ A,
                                   float* __restrict__ C, 
                                   int n) {
                                             
-    int global_tid = blockIdx.x * blockDim.x + threadIdx.x;
-
-    int row = global_tid / n;
-    int col = global_tid % n;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
 
     if (row < n && col < n) {
         float sum = 0.0f;
@@ -35,10 +33,11 @@ std::vector<float> NaiveGemmCUDA(const std::vector<float>& a,
     cudaMemcpy(d_A, a.data(), bytes, cudaMemcpyHostToDevice);
     cudaMemcpy(d_B, b.data(), bytes, cudaMemcpyHostToDevice);
 
-    const int block_size = 256;
-    int num_blocks = (n * n + block_size - 1) / block_size;
+    dim3 block_size(16, 16); 
+    dim3 grid_size((n + block_size.x - 1) / block_size.x, 
+                   (n + block_size.y - 1) / block_size.y);
 
-    naive_gemm_kernel <<< num_blocks, block_size >>> (d_A, d_B, d_C, n);
+    naive_gemm_kernel <<< grid_size, block_size >>> (d_A, d_B, d_C, n);
     
     std::vector<float> c(n * n);
     cudaMemcpy(c.data(), d_C, bytes, cudaMemcpyDeviceToHost);
